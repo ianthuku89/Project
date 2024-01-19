@@ -1,0 +1,59 @@
+#Entry level
+print("Welcome to the KCB Money Banking system")
+print("To login enter your email or sign up to create an account")
+#User Details(Registration)
+import getpass
+#Function to determine if password entered is same as passowrd in the dictionary
+def user_login(entered_password, user_info):
+    if entered_password == user_info["Password"]:
+        print("Login Successful! Welcome back", user_info["Name"])
+    else:
+        print("Invalid Password. Please try again.")
+
+# Prompt the user for input
+Name = input("Enter your name: ")
+Email = input("Enter your email: ")
+
+# Getpass function to allow the user to input the password secretly
+Password = getpass.getpass("Enter your password: ")
+
+# Dictionary to store the user information
+user_info = {"Name": Name, "Email": Email, "Password": Password}
+
+# Display the collected information
+print("User Information:")
+print("Name:", user_info["Name"])
+print("Email:", user_info["Email"])
+print("Password:", '*' * len(user_info["Password"]))  # Display asterisks instead of the actual password
+
+# Set the maximum number of password attempts
+max_attempts = 3
+attempts = 0
+
+# Allow the user three attempts to enter the correct password
+while attempts < max_attempts:
+    entered_password = getpass.getpass("Enter your password for login: ")
+    
+    # Check if the entered password is correct using the user_login function
+    if entered_password == user_info["Password"]:
+        print("Login Successful! Welcome back", user_info["Name"])
+        break
+    else:
+        attempts += 1
+        remaining_attempts = max_attempts - attempts
+        print(f"Invalid Password. {remaining_attempts} attempt(s) remaining. Please try again.")
+
+if attempts == max_attempts:
+    print("Maximum number of attempts reached. Account locked.")
+
+
+
+
+
+
+
+
+
+
+
+#
